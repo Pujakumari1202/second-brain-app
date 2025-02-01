@@ -18,9 +18,11 @@ npm install -d typescript
 
 # Create tsconfig.json file
 
+
 ```bash 
 npx tsc --init
-``
+
+````
 
 
 # Install Dependency for http-server
@@ -42,4 +44,4 @@ npm install mongoose
 # Install jsonwebtoken dependency
 ````bash
 npm install @types/jsonwebtoken
-```
+````
