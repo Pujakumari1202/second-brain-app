@@ -21,3 +21,25 @@ npm install -d typescript
 ```bash 
 npx tsc --init
 ``
+
+
+# Install Dependency for http-server
+
+`````bash
+npm install express
+`````
+
+## Create types file for express(TS)
+````bash
+npm install -d @types/express
+````
+
+## Install mongoose dependency 
+````bash
+npm install mongoose
+````
+
+# Install jsonwebtoken dependency
+````bash
+npm install @types/jsonwebtoken
+```
