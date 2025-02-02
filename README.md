@@ -45,3 +45,8 @@ npm install mongoose
 ````bash
 npm install @types/jsonwebtoken
 ````
+
+
+````bash
+npm run build
+````
