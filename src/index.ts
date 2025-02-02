@@ -6,46 +6,56 @@ import {UserModel} from "./db";
 const app=express();
 app.use(express.json());
 
-app.post("api/v1/signup",async(req,res)=>{
+app.post("/api/v1/signup",async(req,res)=>{
     //Zod validation, hash the password
     const username=req.body.username;
     const password=req.body.password;
-
-    await UserModel.create({
-        username:username,
-        password:password
-
-    })
-
-    res.json({
-        message:"User signed up"
-    })
+    try{
+        await UserModel.create({
+            username:username,
+            password:password
+    
+        })
+        
+        res.json({
+            message:"User signed up"
+        })
+        
+    }catch(e){
+        res.status(411).json({
+            message:"User already exists"
+        })
+    }
 })
 
-app.post("api/v1/signin",(req,res)=>{
-
-})
-
-app.post("api/v1/content",(req,res)=>{
-
-})
-
-
-app.get("api/v1/content",(req,res)=>{
+app.post("/api/v1/signin",(req,res)=>{
 
 })
 
-app.delete("api/v1/content",(req,res)=>{
+app.post("/api/v1/content",(req,res)=>{
 
 })
 
-app.post("api/v1/brain/share",(req,res)=>{
+
+app.get("/api/v1/content",(req,res)=>{
 
 })
 
-app.get("api/v1/brain/:shareLink",(req,res)=>{
+app.delete("/api/v1/content",(req,res)=>{
+
+})
+
+app.post("/api/v1/brain/share",(req,res)=>{
+
+})
+
+app.get("/api/v1/brain/:shareLink",(req,res)=>{
     
 })
 
+// app.get("/api/v1/signup",(req,res)=>{
+//     console.log("Hello World")
+//     res.send("Hello World11111111")
+// })
 
 app.listen(3000);
