@@ -1,5 +1,7 @@
 ## Second Brain App using TypeScript
 
+# Backend code
+
 week-15
 ## Steps to run to create a new project
 
@@ -50,3 +52,11 @@ npm install @types/jsonwebtoken
 ````bash
 npm run build
 ````
+```
+
+
+
+
+### Now Frontend in TypeScript(React)
+
+in other folder
