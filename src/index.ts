@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 import jwt from "jsonwebtoken";
 import {JWT_PASSWORD} from "./config";
 import { userMiddleware } from "./middleware";
-import { ContentModel, UserModel } from "./db";
+import { ContentModel, UserModel , LinkModel} from "./db";
 
 
 const app=express();
@@ -134,11 +134,86 @@ app.delete("/api/v1/content",userMiddleware,async   (req,res)=>{
 
 })
 
-app.post("/api/v1/brain/share",(req,res)=>{
+app.post("/api/v1/brain/share",userMiddleware,async(req,res)=>{
+    const share=req.body.share;
+    if(share){
+        const existingLink =await LinkModel.findOne({
+            //@ts-ignore
+            userId:req.userId
+
+        });
+
+        if(existingLink){
+            res.json({
+                hash:existingLink.hash
+            })
+            return ;
+
+        }
+        //@ts-ignore
+        const hash=random(10);
+        await LinkModel.create({
+            //@ts-ignore
+            userId:req.userId,
+            hash:hash
+        })
+
+        res.json({
+            hash
+        })
+    }else {
+        //@ts-ignore
+        await LinkModel.deteteOne({
+            //@ts-ignore
+            userId:req.userId
+        });
+
+        res.json({
+            message:"Removed link"
+        })
+    }
 
 })
 
-app.get("/api/v1/brain/:shareLink",(req,res)=>{
+app.get("/api/v1/brain/:shareLink",userMiddleware,async(req,res)=>{
+    const hash=req.params.shareLink;
+
+    const link=await LinkModel.findOne({
+        hash
+    });
+
+    if(!link){
+        res.status(411).json({
+            message:"Sorry incorrect input"
+        })
+        return ;
+    }
+
+    //UserId
+    const content =await ContentModel.find({
+        //@ts-ignore
+        userId:link.userId
+
+    })
+
+    console.log(link);
+    const user =await UserModel.findOne({
+        //@ts-ignore
+        _id:link.userId
+    })
+
+    if(!user){
+        res.status(411).json({
+            message:"User not found ,error should ideally not happen"
+        })
+        return;
+    }
+
+    res.json({
+        username:user.username,
+        content:content
+    })
+
     
 })
 
