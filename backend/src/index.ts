@@ -85,7 +85,7 @@ app.post("/api/v1/content", userMiddleware, async (req, res) => {
             type,
             title: req.body.title,
             //@ts-ignore
-            userID: req.userId,  // Ensure this matches the schema's field name
+            userId: req.userId,  // Ensure this matches the schema's field name
             tags: []
         });
         res.json({
@@ -101,16 +101,13 @@ app.post("/api/v1/content", userMiddleware, async (req, res) => {
 
 
 app.get("/api/v1/content", userMiddleware, async (req, res) => {
-
     // @ts-ignore
     const userId = req.userId;
     const content = await ContentModel.find({
-
         userId: userId
-
     }).populate("userId", "username")
-    console.log(content)
-
+    //@ts-ignore
+    
     res.json({
         content
     })

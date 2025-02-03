@@ -19,7 +19,7 @@ const ContentSchema=new Schema({
     link:String,
     tags:[{type:mongoose.Types.ObjectId,ref:'Tag'}],
     type: String,
-    userID:{type:mongoose.Types.ObjectId,ref:'User',required:true},
+    userId:{type:mongoose.Types.ObjectId,ref:'User',required:true},
 })
 
 
@@ -27,7 +27,7 @@ export const ContentModel=model("Content",ContentSchema);
 
 const LinkSchema=new Schema({
     hash:String,
-    userID:{type:mongoose.Types.ObjectId,ref:'User', required:true,unique:true},
+    userId:{type:mongoose.Types.ObjectId,ref:'User', required:true,unique:true},
 
 })
 
