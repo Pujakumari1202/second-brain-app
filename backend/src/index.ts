@@ -1,6 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import jwt from "jsonwebtoken";
+import {random} from "./utils";
 import {JWT_PASSWORD} from "./config";
 import { userMiddleware } from "./middleware";
 import { ContentModel, UserModel , LinkModel} from "./db";
@@ -131,6 +132,8 @@ app.delete("/api/v1/content",userMiddleware,async   (req,res)=>{
 
 })
 
+
+//hit the backend to get the link
 app.post("/api/v1/brain/share",userMiddleware,async(req,res)=>{
     const share=req.body.share;
     if(share){
@@ -172,9 +175,10 @@ app.post("/api/v1/brain/share",userMiddleware,async(req,res)=>{
 
 })
 
+//give the link to the user
 app.get("/api/v1/brain/:shareLink",userMiddleware,async(req,res)=>{
     const hash=req.params.shareLink;
-
+    //it will return the link but we also want userId
     const link=await LinkModel.findOne({
         hash
     });
@@ -186,6 +190,7 @@ app.get("/api/v1/brain/:shareLink",userMiddleware,async(req,res)=>{
         return ;
     }
 
+    // for that we do this
     //UserId
     const content =await ContentModel.find({
         //@ts-ignore
@@ -203,6 +208,7 @@ app.get("/api/v1/brain/:shareLink",userMiddleware,async(req,res)=>{
         res.status(411).json({
             message:"User not found ,error should ideally not happen"
         })
+        //early return
         return;
     }
 
