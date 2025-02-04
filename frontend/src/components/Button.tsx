@@ -11,7 +11,7 @@ interface ButtonProps{
     endIcon?:ReactElement;
     onClick:()=>void;
 }
-
+//eithe we do if else (bunch of if else )or we can globally defined like this
 const variantStyles={
    "primary":"bg-purple-600  text-white",
    "secondary":"bg-purple-300 text-purple-600"
