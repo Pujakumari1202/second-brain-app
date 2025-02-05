@@ -13,7 +13,7 @@ const variantClasses={
 };
 
 // ADD common styles to all the button 
-const defaultStyles="px-4 py-2 rounded-md  flex item-center";
+const defaultStyles="px-4 py-2 rounded-md  flex items-center";
 
 export function Button({variant,text,startIcon}:ButtonProps){
     return <button className={variantClasses[variant] + " " + defaultStyles}>
