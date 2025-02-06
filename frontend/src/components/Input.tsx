@@ -2,7 +2,7 @@
 // cutom input box(design)
 interface InputProps { 
     placeholder: string; 
-    ref?: any;
+    reference?: any;
 }
 
 export function Input({placeholder, reference}: InputProps) {

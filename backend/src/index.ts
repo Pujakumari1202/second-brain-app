@@ -5,10 +5,12 @@ import {random} from "./utils";
 import {JWT_PASSWORD} from "./config";
 import { userMiddleware } from "./middleware";
 import { ContentModel, UserModel , LinkModel} from "./db";
+import cors from "cors";
 
 
 const app=express();
 app.use(express.json());
+app.use(cors());
 
 app.post("/api/v1/signup",async(req,res)=>{
     //Zod validation, hash the password

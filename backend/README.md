@@ -52,6 +52,8 @@ npm install @types/jsonwebtoken
 ````bash
 npm run build
 ````
+```bash
+npm install cors @types/cors
 ```
 
 
