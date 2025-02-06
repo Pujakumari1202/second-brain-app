@@ -30,5 +30,12 @@ npx tailwindcss init -p
 ```
 
 
-
+## Install react-router-dom to use routing
 ```bash
+npm install react-router-dom
+```
+
+## Install axios to fetch the data from backend
+```bash
+npm install axios   
+```
