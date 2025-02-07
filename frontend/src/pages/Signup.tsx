@@ -27,7 +27,8 @@ export function Signup() {
             <Input reference={usernameRef} placeholder="Username" />
             <Input reference={passwordRef} placeholder="Password" />
             <div className="flex justify-center pt-4">
-                <Button onClick={signup} loading={false} variant="primary" text="Signup" fullWidth={true} />
+                <Button onClick={signup} loading={false} variant="primary" 
+                text="Signup" fullWidth={true} />
             </div>
         </div>
     </div>
