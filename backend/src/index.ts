@@ -79,8 +79,15 @@ app.post("/api/v1/signin",async(req,res)=>{
     
 // })
 app.post("/api/v1/content", userMiddleware, async (req, res) => {
-    const link = req.body.link;
+    let link = req.body.link;
     const type = req.body.type;
+
+    if (type=="youtube") {
+        let urlParts = link.split("v=");
+        let videoId = urlParts[1];
+        let embedBase = "https://www.youtube.com/embed/";
+        link = embedBase + videoId;
+}
     
     try {
         await ContentModel.create({

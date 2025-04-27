@@ -10,6 +10,7 @@ npm create vite@latest
 
 ```bash
 npm run dev
+http://localhost:5173/signup
 ```
 
 ```bash
