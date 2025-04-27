@@ -83,7 +83,7 @@ app.post("/api/v1/content", userMiddleware, async (req, res) => {
     const type = req.body.type;
 
     if (type=="youtube") {
-        let urlParts = link.split("v=");
+        let urlParts = link.split("=");
         let videoId = urlParts[1];
         let embedBase = "https://www.youtube.com/embed/";
         link = embedBase + videoId;
